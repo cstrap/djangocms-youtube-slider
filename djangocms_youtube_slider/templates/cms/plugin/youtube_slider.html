@@ -32,7 +32,7 @@
 
     {% block extrahead %}
     <script src="{% static "djangocms_youtube_slider/js/jquery.flexslider.js" %}"></script>
-    <script type="text/javascript">
+    <script>
     var tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -59,20 +59,19 @@
             }
         });
 
-        $('#xcarousel').flexslider({
+        $.flexslider.defaults = $.extend($.flexslider.defaults, {
             animation: "slide",
             controlNav: false,
             animationLoop: false,
-            slideshow: false,
+            slideshow: false
+        });
+
+        $('#xcarousel').flexslider({
             itemWidth: 120,
             asNavFor: '#xslider'
         });
 
         $('#xslider').flexslider({
-            animation: "slide",
-            controlNav: false,
-            animationLoop: false,
-            slideshow: false,
             itemWidth: 610,
             sync: "#xcarousel"
         });

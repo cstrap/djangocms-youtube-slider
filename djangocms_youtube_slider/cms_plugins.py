@@ -7,7 +7,6 @@ import xml.etree.cElementTree as ET
 import requests
 
 from django.contrib.admin import StackedInline
-from django.utils.translation import ugettext_lazy as _
 from cms.plugin_pool import plugin_pool
 from cms.plugin_base import CMSPluginBase
 
