@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="djangocms_youtube_slider",
-    version="0.1.2",
+    version="0.1.4",
     url='https://github.com/cstrap/djangocms_youtube_slider',
     license='MIT',
     description="django-cms plugin - Youtube Slider",
