@@ -2,8 +2,8 @@
 from __future__ import absolute_import
 
 from collections import namedtuple
+from io import BytesIO
 import xml.etree.cElementTree as ET
-import six
 import requests
 
 from django.contrib.admin import StackedInline
@@ -27,7 +27,7 @@ class YoutubeSliderPlugin(CMSPluginBase):
     admin_preview = False
     inlines = [YoutubeSlideInline, ]
     model = YoutubeVideoContainer
-    name = _("Youtube video slider")
+    name = "Youtube Video Slider"
     render_template = "cms/plugin/youtube_slider.html"
 
     def render(self, context, instance, placeholder):
@@ -47,7 +47,7 @@ class YoutubeSliderPlugin(CMSPluginBase):
             if slide.is_playlist:
                 response = requests.get(slide.playlist_link)
                 if response.status_code == 200:
-                    xml = six.moves.cStringIO(response.content)
+                    xml = BytesIO(response.content)
                     xml.flush()
                     xml.seek(0)
                     for entry in ET.parse(xml).getroot().findall(u"{http://www.w3.org/2005/Atom}entry"):

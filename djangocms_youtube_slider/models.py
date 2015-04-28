@@ -10,7 +10,7 @@ from cms.models import CMSPlugin
 
 
 class YoutubeVideoContainer(CMSPlugin):
-    description = models.CharField(max_length=100, null=True, blank=True, verbose_name=_("Descrizione"))
+    description = models.CharField(max_length=100, null=True, blank=True, verbose_name=_("Description"))
 
     def copy_relations(self, old_instance):
         for slide in old_instance.slides.all():
@@ -76,7 +76,7 @@ class YoutubeVideoSlide(CMSPlugin):
         super(YoutubeVideoSlide, self).save(no_signals, *args, **kwargs)
 
     def __unicode__(self):
-        return "Video {}".format(self.pk)
+        return u"Video/Playlist {}".format(self.pk)
 
     class Meta:
         ordering = ('order', )
