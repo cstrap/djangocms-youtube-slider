@@ -5,4 +5,4 @@ This plugin was born for a project with some restriction due to django version (
 
 It could be work also in django-cms 2.5+ with little modification... Maybe in the future :-)
 
-Well... It works for us... Feel free to fork and send pull requests! 
+Well... It works for us... Feel free to fork and send pull requests!
