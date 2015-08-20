@@ -18,4 +18,7 @@ INSTALLED_APPS = (
     # ...
 ```
 
+If you are using South for database migrations, please ensure you have installed at least version 1.0, or it won't be
+able to find the migrations (stored under south_migrations).
+
 Configure how to use the ```YoutubeSliderPlugin``` with django-cms.
