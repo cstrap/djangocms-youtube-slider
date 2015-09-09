@@ -4,7 +4,7 @@ from south.v2 import DataMigration
 class Migration(DataMigration):
 
     def forwards(self, orm):
-        for index, slide in enumerate(orm['djangocms_youtube_slider.youtubevideoslide'].objects.all()):
+        for index, slide in enumerate(orm['djangocms_youtube_slider.youtubevideoslide'].objects.order_by('order').all()):
             slide.order = index + 1
             slide.save()
 
