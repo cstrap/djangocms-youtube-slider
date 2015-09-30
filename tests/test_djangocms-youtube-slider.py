@@ -2,11 +2,11 @@
 from __future__ import absolute_import
 
 from django.test import TestCase
-from .models import YoutubeVideoSlide
+
+from djangocms_youtube_slider.models import YoutubeVideoSlide
 
 
 class YoutubeVideoSlideTest(TestCase):
-
     def test_video_id_empty(self):
         obj = YoutubeVideoSlide()
 

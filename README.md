@@ -1,8 +1,6 @@
 # djangocms-youtube-slider
 django-cms youtube slider built with http://flexslider.woothemes.com/ and good intentions
 
-It works on my envs and for my purposes... but... feel free to fork and send pull requests!
-
 ## Installation
 
 ```bash

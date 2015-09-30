@@ -1,8 +1,19 @@
-django-cms Youtube Slider
-=========================
+===============================
+djangocms Youtube slider
+===============================
 
-This plugin was born for a project with some restriction due to django version (at this moment 1.5.x, as you can see the South migration scripts).
+.. image:: https://img.shields.io/travis/cstrap/djangocms-youtube-slider.svg
+        :target: https://travis-ci.org/cstrap/djangocms-youtube-slider
 
-It could be work also in django-cms 2.5+ with little modification... Maybe in the future :-)
+.. image:: https://img.shields.io/pypi/v/djangocms-youtube-slider.svg
+        :target: https://pypi.python.org/pypi/djangocms-youtube-slider
 
-Well... It works for us... Feel free to fork and send pull requests!
+
+django-cms youtube slider build with http://flexslider.woothemes.com/ and good intentions
+
+* Free software: MIT license
+
+Features
+--------
+
+* Provide a video slider with Youtube videos/playlists
