@@ -1,25 +1,25 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 
+import sys
 from collections import namedtuple
 from io import BytesIO
 import xml.etree.cElementTree as ET
-import requests
 
+import requests
 from django.contrib.admin import StackedInline
 from cms.plugin_pool import plugin_pool
 from cms.plugin_base import CMSPluginBase
+from adminsortable2.admin import SortableInlineAdminMixin
 
 from .models import YoutubeVideoContainer, YoutubeVideoSlide
-
-from adminsortable2.admin import SortableInlineAdminMixin
 
 
 class YoutubeSlideInline(SortableInlineAdminMixin, StackedInline):
     model = YoutubeVideoSlide
     fk_name = 'slider'
     extra = 1
-    ordering = ('order', )
+    ordering = ('order',)
 
 
 class YoutubeSliderPlugin(CMSPluginBase):
@@ -30,17 +30,12 @@ class YoutubeSliderPlugin(CMSPluginBase):
     render_template = "cms/plugin/youtube_slider.html"
 
     def render(self, context, instance, placeholder):
-        def sequence():
-            n = 0
-            while True:
-                yield n
-                n += 1
 
         context = super(YoutubeSliderPlugin, self).render(context, instance, placeholder)
 
         slides = []
         YoutubeVideo = namedtuple('YoutubeVideo', 'pos, video_id, video_thumb')
-        pos = sequence()
+        pos = (i for i in xrange(0, sys.maxsize))
 
         for slide in instance.slides.all().order_by('order'):
             if slide.is_playlist:
@@ -63,5 +58,5 @@ class YoutubeSliderPlugin(CMSPluginBase):
 
         return context
 
-plugin_pool.register_plugin(YoutubeSliderPlugin)
 
+plugin_pool.register_plugin(YoutubeSliderPlugin)
