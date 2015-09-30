@@ -21,14 +21,14 @@ requirements = [
 ]
 
 test_requirements = [
-    "Django>1.4,<1.7",
+    "Django>1.4",
     "django-cms>3.0,<3.1",
     "requests>=2.7,<2.8",
     "django-mptt>=0.6.1,<0.7",
 ]
 
 setup(
-    name='djangocms-youtube-slider',
+    name='djangocms_youtube_slider',
     version='0.2.0',
     description="django-cms youtube slider build with http://flexslider.woothemes.com/ and good intentions",
     long_description=readme + '\n\n' + history,
