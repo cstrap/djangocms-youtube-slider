@@ -1,8 +1,60 @@
-{% load static %}
+{% load static sekizai_tags %}
 
-{% block extrastyle %}
-<link rel="stylesheet" href="{% static "djangocms_youtube_slider/css/flexslider.css" %}" />
-{% endblock %}
+{% addtoblock "js" %}<script src="{% static "djangocms_youtube_slider/js/jquery.flexslider.js" %}"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script>
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+$(window).load(function() {
+    var placeholders = $('.play');
+    var players = [];
+
+    placeholders.each(function(idx, el) {
+        if(typeof(YT) != 'undefined') {
+            players.push(
+                new YT.Player(el.id, {
+                    height: '350',
+                    width: '600',
+                    videoId: $(el).attr('alt'),
+                    events: {
+                        'onReady': function(event) {
+                            event.target.stopVideo();
+                        }
+                    }
+                })
+            );
+        }
+    });
+
+    $.flexslider.defaults = $.extend($.flexslider.defaults, {
+        animation: "slide",
+        controlNav: false,
+        animationLoop: false,
+        slideshow: false
+    });
+
+    $('#xcarousel').flexslider({
+        itemWidth: 120,
+        asNavFor: '#xslider'
+    });
+
+    $('#xslider').flexslider({
+        itemWidth: 610,
+        sync: "#xcarousel"
+    });
+
+    $('#xslider .flex-next, #xslider .flex-prev, #xcarousel .slides').click(function() {
+        $.each(players, function(idx, el) {
+            el.stopVideo();
+        });
+    });
+
+});
+</script>{% endaddtoblock %}
+
+{% addtoblock "css" %}<link rel="stylesheet" href="{% static "djangocms_youtube_slider/css/flexslider.css" %}" />{% endaddtoblock %}
 
 {% if description %}
     <h2>{{ description }}</h2>
@@ -29,61 +81,5 @@
         {% endfor %}
       </ul>
     </div>
-
-    {% block extrahead %}
-    <script src="{% static "djangocms_youtube_slider/js/jquery.flexslider.js" %}"></script>
-    <script>
-    var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    $(window).load(function() {
-        var placeholders = $('.play');
-        var players = [];
-
-        placeholders.each(function(idx, el) {
-            if(typeof(YT) != 'undefined') {
-                players.push(
-                    new YT.Player(el.id, {
-                        height: '350',
-                        width: '600',
-                        videoId: $(el).attr('alt'),
-                        events: {
-                            'onReady': function(event) {
-                                event.target.stopVideo();
-                            }
-                        }
-                    })
-                );
-            }
-        });
-
-        $.flexslider.defaults = $.extend($.flexslider.defaults, {
-            animation: "slide",
-            controlNav: false,
-            animationLoop: false,
-            slideshow: false
-        });
-
-        $('#xcarousel').flexslider({
-            itemWidth: 120,
-            asNavFor: '#xslider'
-        });
-
-        $('#xslider').flexslider({
-            itemWidth: 610,
-            sync: "#xcarousel"
-        });
-
-        $('#xslider .flex-next, #xslider .flex-prev, #xcarousel .slides').click(function() {
-            $.each(players, function(idx, el) {
-                el.stopVideo();
-            });
-        });
-
-    });
-    </script>
-    {% endblock %}
 
 {% endif %}
