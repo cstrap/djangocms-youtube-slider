@@ -36,7 +36,7 @@ setup(
     author_email='lab@strap.it',
     url='https://github.com/cstrap/djangocms-youtube-slider',
     packages=[
-        'djangocms-youtube-slider',
+        'djangocms_youtube_slider',
     ],
     package_dir={'djangocms-youtube-slider':
                  'djangocms_youtube_slider'},
