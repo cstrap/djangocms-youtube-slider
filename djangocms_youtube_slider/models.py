@@ -8,6 +8,8 @@ from django.db.models import Max
 from django.utils.translation import ugettext_lazy as _
 from cms.models import CMSPlugin
 
+YOUTUBE_RSS_PLAYLIST_V3 = u"https://www.youtube.com/feeds/videos.xml?playlist_id={}"
+
 
 class YoutubeVideoContainer(CMSPlugin):
     description = models.CharField(max_length=100, null=True, blank=True, verbose_name=_("Description"))
@@ -17,7 +19,7 @@ class YoutubeVideoContainer(CMSPlugin):
             slide.id = slide.pk = None
             slide.slider = self
             slide.save(force_insert=True)
-            
+
     def __unicode__(self):
         return u"{} ({} video)".format(self.description, self.slides.count())
 
@@ -65,7 +67,7 @@ class YoutubeVideoSlide(CMSPlugin):
     @property
     def playlist_link(self):
         if self.is_playlist:
-            return u"https://gdata.youtube.com/feeds/api/playlists/{}".format(
+            return YOUTUBE_RSS_PLAYLIST_V3.format(
                 urlparse.parse_qs(urlparse.urlparse(self.video_link).query).get('list', 'X')[0]
             )
         return ""
@@ -79,4 +81,4 @@ class YoutubeVideoSlide(CMSPlugin):
         return u"Video/Playlist {}".format(self.pk)
 
     class Meta:
-        ordering = ('order', )
+        ordering = ('order',)

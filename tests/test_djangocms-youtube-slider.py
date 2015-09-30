@@ -80,5 +80,5 @@ class YoutubeVideoSlideTest(TestCase):
         obj = YoutubeVideoSlide()
         obj.video_link = u"https://www.youtube.com/playlist?list=PL3EThPF3sbJppGg2o65CjpeCkJ7Y2UvKn"
 
-        self.assertEquals("https://gdata.youtube.com/feeds/api/playlists/PL3EThPF3sbJppGg2o65CjpeCkJ7Y2UvKn",
+        self.assertEquals("https://www.youtube.com/feeds/videos.xml?playlist_id=PL3EThPF3sbJppGg2o65CjpeCkJ7Y2UvKn",
                           obj.playlist_link)
