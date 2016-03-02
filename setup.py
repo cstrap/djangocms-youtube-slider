@@ -29,7 +29,7 @@ test_requirements = [
 
 setup(
     name='djangocms_youtube_slider',
-    version='0.2.0',
+    version='0.2.1',
     description="django-cms youtube slider build with http://flexslider.woothemes.com/ and good intentions",
     long_description=readme + '\n\n' + history,
     author="Christian Strappazzon",
