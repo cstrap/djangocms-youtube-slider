@@ -23,6 +23,9 @@ class YoutubeVideoContainer(CMSPlugin):
     def __unicode__(self):
         return u"{} ({} video)".format(self.description, self.slides.count())
 
+    class Meta:
+        db_table = 'cmsplugin_youtubevideocontainer'
+
 
 class YoutubeVideoSlide(CMSPlugin):
     slider = models.ForeignKey(YoutubeVideoContainer, related_name='slides', verbose_name=_("Slider"))
@@ -82,3 +85,5 @@ class YoutubeVideoSlide(CMSPlugin):
 
     class Meta:
         ordering = ('order',)
+        db_table = 'cmsplugin_youtubevideoslide'
+
